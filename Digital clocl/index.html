@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="light">
+      <div class="clock-container">
+        <div class="time" id="time">00:00:00</div>
+        <div class="date" id="date">Loading date...</div>
+        <button id="themeToggle">Dark Mode</button>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: #f4f4f9;
+        margin: 0;
+        padding: 40px;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      .choices {
+        margin: 20px 0;
+      }
+
+      button {
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: transform 0.2s, background 0.3s;
+      }
+
+      button:hover {
+        transform: scale(1.1);
+      }
+
+      .rock {
+        background: #ff7675;
+        color: white;
+      }
+      .paper {
+        background: #74b9ff;
+        color: white;
+      }
+      .scissors {
+        background: #55efc4;
+        color: black;
+      }
+
+      .result {
+        font-size: 1.5rem;
+        margin: 20px 0;
+      }
+
+      .scoreboard {
+        font-size: 1.2rem;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Rock 🪨 Paper 📄 Scissors ✂️</h1>
+
+    <div class="choices">
+      <button class="rock" onclick="playGame('Rock')">🪨 Rock</button>
+      <button class="paper" onclick="playGame('Paper')">📄 Paper</button>
+      <button class="scissors" onclick="playGame('Scissors')">
+        ✂️ Scissors
+      </button>
+    </div>
+
+    <div class="result" id="result">Make your move!</div>
+
+    <div class="scoreboard">
+      Wins: <span id="wins">0</span> | Losses: <span id="losses">0</span> |
+      Draws: <span id="draws">0</span>
+    </div>
+
+    <script>
+      let wins = 0,
+        losses = 0,
+        draws = 0;
+
+      function playGame(userChoice) {
+        const choices = ["Rock", "Paper", "Scissors"];
+        const computerChoice =
+          choices[Math.floor(Math.random() * choices.length)];
+
+        let result = "";
+        if (userChoice === computerChoice) {
+          result = "It's a Draw! 😐";
+          draws++;
+        } else if (
+          (userChoice === "Rock" && computerChoice === "Scissors") ||
+          (userChoice === "Paper" && computerChoice === "Rock") ||
+          (userChoice === "Scissors" && computerChoice === "Paper")
+        ) {
+          result = `You Win! 🎉 ${userChoice} beats ${computerChoice}`;
+          wins++;
+        } else {
+          result = `You Lose! 😢 ${computerChoice} beats ${userChoice}`;
+          losses++;
+        }
+
+        document.getElementById("result").textContent = result;
+        document.getElementById("wins").textContent = wins;
+        document.getElementById("losses").textContent = losses;
+        document.getElementById("draws").textContent = draws;
+      }
+    </script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Quote Generator</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        transition: background 0.5s;
+      }
+
+      .quote-box {
+        text-align: center;
+        max-width: 600px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .quote {
+        font-size: 1.5rem;
+        font-style: italic;
+        margin-bottom: 10px;
+      }
+
+      .author {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 6px;
+        background: #007bff;
+        color: white;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      button:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="quote-box">
+      <div class="quote" id="quote">Click below to get inspired!</div>
+      <div class="author" id="author"></div>
+      <button onclick="newQuote()">✨ New Quote</button>
+    </div>
+
+    <script>
+      const quotes = [
+        {
+          text: "The best way to get started is to quit talking and begin doing.",
+          author: "Walt Disney",
+        },
+        {
+          text: "Success is not in what you have, but who you are.",
+          author: "Bo Bennett",
+        },
+        {
+          text: "Don’t let yesterday take up too much of today.",
+          author: "Will Rogers",
+        },
+        {
+          text: "It always seems impossible until it’s done.",
+          author: "Nelson Mandela",
+        },
+        {
+          text: "Happiness is not by chance, but by choice.",
+          author: "Jim Rohn",
+        },
+      ];
+
+      function newQuote() {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        const randomQuote = quotes[randomIndex];
+
+        document.getElementById("quote").textContent = `"${randomQuote.text}"`;
+        document.getElementById(
+          "author"
+        ).textContent = `– ${randomQuote.author}`;
+
+        // Change background color randomly
+        const randomColor = `hsl(${Math.floor(Math.random() * 360)}, 70%, 70%)`;
+        document.body.style.background = randomColor;
+      }
+    </script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Clock</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: "Courier New", monospace;
+        transition: background 0.3s, color 0.3s;
+      }
+
+      .clock-container {
+        text-align: center;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .time {
+        font-size: 3rem;
+        margin-bottom: 10px;
+      }
+
+      .date {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s;
+      }
+
+      /* Light Theme */
+      body.light {
+        background: #ffffff;
+        color: #000000;
+      }
+
+      body.light button {
+        background: #007bff;
+        color: #fff;
+      }
+
+      body.light button:hover {
+        background: #0056b3;
+      }
+
+      /* Dark Theme */
+      body.dark {
+        background: #121212;
+        color: #00ffcc;
+      }
+
+      body.dark button {
+        background: #ff0077;
+        color: #fff;
+      }
+
+      body.dark button:hover {
+        background: #cc0066;
+      }
+    </style>
+  </head>
+  <body class="light">
+    <div class="clock-container">
+      <div class="time" id="time">00:00:00</div>
+      <div class="date" id="date">Loading date...</div>
+      <button id="themeToggle">🌙 Dark Mode</button>
+    </div>
+
+    <script>
+      function updateClock() {
+        const now = new Date();
+
+        // Time
+        let hours = String(now.getHours()).padStart(2, "0");
+        let minutes = String(now.getMinutes()).padStart(2, "0");
+        let seconds = String(now.getSeconds()).padStart(2, "0");
+        document.getElementById(
+          "time"
+        ).textContent = `${hours}:${minutes}:${seconds}`;
+
+        // Date
+        const options = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        document.getElementById("date").textContent = now.toLocaleDateString(
+          "en-US",
+          options
+        );
+      }
+
+      // Update clock every second
+      setInterval(updateClock, 1000);
+      updateClock(); // initial call
+
+      // Theme toggle
+      const button = document.getElementById("themeToggle");
+      button.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        document.body.classList.toggle("light");
+
+        if (document.body.classList.contains("dark")) {
+          button.textContent = "🌞 Light Mode";
+        } else {
+          button.textContent = "🌙 Dark Mode";
+        }
+      });
+    </script>
+  </body>
+</html>

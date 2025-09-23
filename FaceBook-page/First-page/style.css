@@ -1,0 +1,46 @@
+.container-fluid {
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 5px;
+  /* background-color: aqua; */
+}
+.logo {
+  color: rgb(36, 120, 205);
+  font-size: 68px;
+  font-weight: 700;
+  font-family: Helvetica Neue;
+}
+form {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  padding: 20px;
+  width: 400px;
+}
+input[type="text"] {
+  padding: 10px;
+  width: 100%;
+}
+input[type="password"] {
+  padding: 10px;
+  width: 100%;
+}
+p {
+  font-size: 20px;
+  font-weight: 500;
+}
+.pri {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+a {
+  margin-left: 130px;
+}
+.new {
+  margin-left: 100px;
+  /* margin-top: 10px; */
+}
+.pass {
+  margin-top: 20px;
+}
